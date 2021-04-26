@@ -6,14 +6,12 @@ We are in the process of enabling this repo for community contribution. See wiki
 
 # MultiClusterHub CRDs
 
-Central location for CRDs used by Multiclusterhub components. This repo provides CRDs for the [multiclusterhub-operator installer](https://github.com/open-cluster-management/multicloudhub-operator). Updating CRDs in this repo will trigger an update in the installer repo to point to the latest version.
+Central location for CRDs used by Multiclusterhub components. This repo provides CRDs for the [multiclusterhub-operator installer](https://github.com/open-cluster-management/multiclusterhub-operator). Updating CRDs in this repo will trigger an update in the installer repo to point to the latest version.
 
 ## CRD chart sources
 Original locations of CRDs
 
 https://github.com/open-cluster-management/rcm-chart
-- 0000_00_addon.open-cluster-management.io_clustermanagementaddons.crd.yaml
-- 0000_01_addon.open-cluster-management.io_managedclusteraddons.crd.yaml
 - agent.open-cluster-management.io_klusterletaddonconfigs_crd.yaml
 
 https://github.com/open-cluster-management/cluster-lifecycle-chart
@@ -38,9 +36,8 @@ https://github.com/open-cluster-management/search-chart
 https://github.com/open-cluster-management/console-chart
 - user-preference-crd.yaml
 
-https://github.com/open-cluster-management/multicloudhub-operator (foundation/OCM)
+https://github.com/open-cluster-management/multiclusterhub-operator (foundation/OCM)
 - view.open-cluster-management.io_managedclusterviews_crd.yaml
-- cluster.open-cluster-management.io_mirroredmanagedclusters.yaml
 - internal.open-cluster-management.io_managedclusterinfos_crd.yaml
 - inventory.open-cluster-management.io_baremetalassets_crd.yaml
 - action.open-cluster-management.io_managedclusteractions_crd.yaml

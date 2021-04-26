@@ -1,3 +1,4 @@
+# Copyright Contributors to the Open Cluster Management project
 
 ---
 apiVersion: apiextensions.k8s.io/v1
@@ -16,7 +17,7 @@ spec:
     singular: clustercurator
   scope: Namespaced
   versions:
-  - name: v1alpha1
+  - name: v1beta1
     schema:
       openAPIV3Schema:
         description: ClusterCurator is the Schema for the clustercurators API This kind allows for prehook and posthook jobs to be executed prior to Hive provisioning and import of a cluster.
@@ -80,6 +81,9 @@ spec:
                       - name
                       type: object
                     type: array
+                  towerAuthSecret:
+                    description: TowerAuthSecret is ansible secret used in template to run in tower
+                    type: string
                 type: object
               install:
                 description: During an install curation run these Pre/Post hooks
@@ -118,6 +122,9 @@ spec:
                       - name
                       type: object
                     type: array
+                  towerAuthSecret:
+                    description: TowerAuthSecret is ansible secret used in template to run in tower
+                    type: string
                 type: object
               providerCredentialPath:
                 description: 'Points to the Cloud Provider or Ansible Provider secret, format: namespace/secretName'
@@ -159,16 +166,25 @@ spec:
                       - name
                       type: object
                     type: array
+                  towerAuthSecret:
+                    description: TowerAuthSecret is ansible secret used in template to run in tower
+                    type: string
                 type: object
               upgrade:
                 description: During an upgrade curation run these
                 properties:
+                  channel:
+                    description: Channel is an identifier for explicitly requesting that a non-default set of updates be applied to this cluster. The default channel will be contain stable updates that are appropriate for production clusters.
+                    type: string
+                  desiredUpdate:
+                    description: DesiredUpdate indicates the desired value of the cluster version. Setting this value will trigger an upgrade (if the current version does not match the desired version).
+                    type: string
                   overrideJob:
                     description: When provided, this is a Job specification and overrides the default flow
                     type: object
                     x-kubernetes-preserve-unknown-fields: true
                   posthook:
-                    description: Jobs to run after the cluster import
+                    description: Jobs to run after the cluster upgrade
                     items:
                       properties:
                         extra_vars:
@@ -183,7 +199,7 @@ spec:
                       type: object
                     type: array
                   prehook:
-                    description: Jobs to run before the cluster deployment
+                    description: Jobs to run before the cluster upgrade
                     items:
                       properties:
                         extra_vars:
@@ -197,6 +213,12 @@ spec:
                       - name
                       type: object
                     type: array
+                  towerAuthSecret:
+                    description: TowerAuthSecret is ansible secret used in template to run in tower
+                    type: string
+                  upstream:
+                    description: Upstream may be used to specify the preferred update server. By default it will use the appropriate update server for the cluster and region.
+                    type: string
                 type: object
             type: object
           status:
